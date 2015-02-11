@@ -52,6 +52,7 @@ else
     error('The number of features must be the same for both windows')
 end
 
+% in order to be predictable on identical data, start with identical points
 [labels,means] = kmeans(W1,K,'Start',W1(1:K,:),'EmptyAction','singleton');
 % uses stats toolbox
 % Calculate the REFERENCE distribution from Window 1
@@ -87,8 +88,8 @@ else
     invscov = diag(1./z);
 end
 
- 
 % Calculate the MATCH from Window 2
+% Distance between cluster means
 for j = 1:M2
     xx = W2(j,:);
     
